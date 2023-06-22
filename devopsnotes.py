@@ -186,3 +186,326 @@ When working with GitHub, having troubleshooting skills can help you overcome co
       git help
       git <command> --help
  .................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lab Dictionary Example
+
+# Define a dictionary to store employee information
+employee_data = [
+    {"name": "John", "age": 30, "department": "Sales", "salary": 50000},
+    {"name": "Jane", "age": 25, "department": "Marketing", "salary": 60000},
+    {"name": "Mary", "age": 23, "department": "Marketing", "salary": 56000},
+    {"name": "Chloe",  "age": 35, "department": "Engineering", "salary": 70000},
+    {"name": "Mike", "age": 32, "department": "Engineering", "salary": 65000},
+    {"name": "Peter", "age": 40, "department": "Sales", "salary": 60000}
+]
+
+def get_employees_by_age_range(age_lower_limit, age_upper_limit):
+    result = []
+    # check for age limits and append the item to result
+    for item in employee_data:
+        if int(item["age"]) > int(age_lower_limit) and int(item["age"]) < int(age_upper_limit):
+            result.append(item)
+    return result
+
+def calculate_average_salary():
+    total = 0
+    average = 0
+    salary=[]
+    for item in employee_data:
+        total = 0
+        person =0
+        if item["salary"]:
+          value = item["salary"]
+          total = total + value
+          person = person + 1
+    average = total / person
+    return average
+
+def get_employees_by_dept(department):
+    result = []
+    for item in employee_data:
+      if item["department"]==department:
+        result.append(item)
+    return result
+
+def display_all_records():
+    print(("Name" + "\t" +"Age" +"\t" +"Department" +"\t" +"Salary" ).expandtabs(15))
+    for item in employee_data:
+        print((item["name"] + "\t" + str(item["age"]) + "\t" + item["department"] + "\t" + str(item["salary"])).expandtabs(15))
+
+
+def display_records(employee_info):
+    print(("Name" + "\t" +"Age" +"\t" +"Department" +"\t" +"Salary" ).expandtabs(15))
+    for item in employee_info:
+        print((item["name"] + "\t" + str(item["age"]) + "\t" + item["department"] + "\t" + str(item["salary"])).expandtabs(15))
+
+def display_main_menu():
+
+    print("\n----- Employee information Tracker -----")
+
+    print("Select option\n")
+
+    print("1 - Display all records")
+    print("2 - Display average salary")
+    print("3 - Display employee within age range")
+    print("4 - Display employee in a department")
+
+
+    print("Q - Quit")
+
+    option = input("Enter selection =>")
+
+    if option == '1':
+        display_all_records()
+
+    elif option == '2':
+        average_salary = calculate_average_salary()
+        print("Average salary = " + str(average_salary))
+
+    elif option == '3':
+        age_lower_limit = input("age (Lower Limit) = ")
+        age_upper_limit = input("age (Uper Limit) = ")
+        employee_info = get_employees_by_age_range(age_lower_limit, age_upper_limit)
+        display_records(employee_info)
+
+
+    elif option == '4':
+        department = input("Name of Department = ")
+        employee_info = get_employees_by_dept(department)
+        display_records(employee_info)
+
+    elif option == 'Q':
+        quit()
+
+def main():
+
+    while (True):
+        display_main_menu()
+
+
+if __name__ == "__main__":
+    main()
+
+
+Pytest
+
+import pytest
+from employee_info import get_employees_by_age_range
+def test_get_employees_by_age_range():
+    expected_results = [
+       {"name": "John", "age": 30, "department": "Sales", "salary": 50000},
+       {"name": "Chloe",  "age": 35, "department": "Engineering", "salary": 70000},
+       {"name": "Mike", "age": 32, "department": "Engineering", "salary": 65000}]
+    given_result = get_employees_by_age_range(30,35)
+    if given_result==expected_results:
+        assert(True)
+
+
+from employee_info import calculate_average_salary
+def test_calculate_average_salary():
+    expected_results = 60000
+    given_result = calculate_average_salary()
+    if given_result == expected_results:
+        assert(True)
+
+from employee_info import get_employees_by_dept
+def test_get_employees_by_dept():
+    expected_results= [
+    {"name": "Jane", "age": 25, "department": "Marketing", "salary": 60000},
+    {"name": "Mary", "age": 23, "department": "Marketing", "salary": 56000}
+    ]
+    given_result= get_employees_by_dept("Marketing")
+    if given_result==expected_results:
+        assert(True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python Dictionary Navigation Tools
+
+Certainly! Here are some commonly used tools and techniques to navigate dictionaries and arrays in Python, along with examples:
+
+1. Accessing Dictionary Values:
+   - Use square brackets (`[]`) with the key to access the corresponding value.
+   Example:
+   --------------------------------------------------python
+   my_dict = {"name": "John", "age": 30, "city": "New York"}
+   print(my_dict["name"])  # Output: John
+   --------------------------------------------------
+
+2. Accessing Array (List) Elements:
+   - Use square brackets (`[]`) with the index to access a specific element in the list. The index starts from 0 for the first element.
+   Example:
+   --------------------------------------------------python
+   my_list = ["apple", "banana", "cherry"]
+   print(my_list[1])  # Output: banana
+   --------------------------------------------------
+
+3. Iterating Over Dictionary Items:
+   - Use a `for` loop with the `.items()` method to iterate over key-value pairs in a dictionary.
+   Example:
+   --------------------------------------------------python
+   my_dict = {"name": "John", "age": 30, "city": "New York"}
+   for key, value in my_dict.items():
+       print(key, value)
+   --------------------------------------------------
+   Output:
+   --------------------------------------------------
+   name John
+   age 30
+   city New York
+   --------------------------------------------------
+
+4. Iterating Over Array (List) Elements:
+   - Use a `for` loop to iterate over elements in an array.
+   Example:
+   --------------------------------------------------python
+   my_list = ["apple", "banana", "cherry"]
+   for item in my_list:
+       print(item)
+   --------------------------------------------------
+   Output:
+   --------------------------------------------------
+   apple
+   banana
+   cherry
+   --------------------------------------------------
+
+5. Checking Key Existence in a Dictionary:
+   - Use the `in` keyword to check if a key exists in a dictionary.
+   Example:
+   --------------------------------------------------python
+   my_dict = {"name": "John", "age": 30, "city": "New York"}
+   if "age" in my_dict:
+       print("Age exists in the dictionary.")
+   --------------------------------------------------
+
+6. Checking Element Existence in an Array:
+   - Use the `in` keyword to check if an element exists in an array.
+   Example:
+   --------------------------------------------------python
+   my_list = ["apple", "banana", "cherry"]
+   if "banana" in my_list:
+       print("Banana exists in the list.")
+   --------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+price_list={'apple' : 1.20, 'orange':1.40, 'watermelon': 6.50, 'pineapple': 2.70, 'pear' : 0.90, 'papaya': 2.95, 'pomegranate': 4.95 }
+
+
+quantity_list= {'apple': 5, 'orange':5, 'watermelon': 1, 'pineapple': 2, 'pear' : 10, 'papaya': 1, 'pomegranate': 2}
+
+
+
+
+def total_cost_shopping():
+total_cost = 0
+for key in price_list.keys():
+if key in quantity_list:
+# complete the implementation below:
+
+
+print("total cost = ", total_cost)
+
+
+
+
+def cost_of_fruits(fruit, quantity):
+for key in price_list.keys():
+if key == fruit:
+cost = quantity*price_list[key]
+break
+
+
+print("cost of ", quantity, fruit, "=", cost)
+
+
+
+
+def main():
+
+
+cost_of_fruits('apple', 10)
+total_cost_shopping()
+
+
+
+
+if __name__ == "__main__":
+main()
+
